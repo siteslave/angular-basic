@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Basic angular application: Step 5</title>
+    <title>Basic angular application: Step 6</title>
 
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -15,28 +15,18 @@
       <div ng-controller="MainCtrl">
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-10">
             <div class="well well-sm">
-              <div class="input-group">
-                <input type="text" class="form-control"
-                  placeholder="New your name..."
-                  ng-model="newName">
-                <span class="input-group-btn">
-                  <button class="btn btn-success"
-                    type="button"
-                    ng-click="add()">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    Add
-                    </button>
-                </span>
-              </div>
+              <button class="btn btn-primary" ng-click="getUsers()">Get users</button>
+              Total users: {{ users.length | number }}
+              <p class="text-danger" ng-show="loading">Loading...</p>
             </div>
 
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-10">
             <div class="well well-sm">
               <input type="text" class="form-control" ng-model="query">
             </div>
@@ -45,22 +35,19 @@
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Username</th>
                   <th>Name</th>
-                  <th></th>
+                   <th>Email</th>
+                   <th>Company</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="user in users | filter: query">
-                  <td>{{ $index + 1 }}</td>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.username }}</td>
                   <td>{{ user.name }}</td>
-                  <td>
-                    <button class="btn btn-default" ng-click="edit($index)">
-                      <i class="glyphicon glyphicon-pencil"></i>
-                    </button>
-                     <button class="btn btn-danger" ng-click="remove($index)">
-                      <i class="glyphicon glyphicon-trash"></i>
-                    </button>
-                  </td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.company.name }}</td>
                 </tr>
               </tbody>
             </table>

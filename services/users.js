@@ -1,7 +1,7 @@
 // User service
 angular.module('app.services.Users', [])
 
-  .factory('Users', function ($rootScope) {
+  .factory('Users', function ($http) {
     return {
       // The users
       users: [
@@ -10,7 +10,10 @@ angular.module('app.services.Users', [])
       ],
       // Get all users
       all: function () {
-        return this.users;
+        return $http.get('http://jsonplaceholder.typicode.com/users')
+          .then(function (res) {
+            return res.data;
+          });
       },
       // Add user
       add: function (name) {

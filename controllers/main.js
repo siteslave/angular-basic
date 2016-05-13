@@ -2,7 +2,19 @@
 angular.module('app.controllers.Main', [])
   .controller('MainCtrl', function ($scope, Users) {
 
-    $scope.users = Users.all();
+    $scope.users = [];
+    $scope.loading = false;
+
+    $scope.getUsers = function () {
+      $scope.loading = true;
+      $scope.users = [];
+
+      Users.all()
+        .then(function (users) {
+          $scope.users = users;
+          $scope.loading = false;
+        });
+    };
 
     $scope.add = function () {
       Users.add($scope.newName);
