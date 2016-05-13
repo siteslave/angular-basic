@@ -1,18 +1,11 @@
 // Basic application
 angular.module('app', [])
-  .controller('MainCtrl', function ($scope, $log) {
+  .controller('MainCtrl', function ($scope, Users) {
 
-    $scope.users = [
-      { id: '1', name: 'Satit Rianpit' },
-      { id: '2', name: 'Steve Jobe'}
-    ];
+    $scope.users = Users.all();
 
     $scope.add = function () {
-      var obj = {};
-      obj.id = Date.now();
-      obj.name = !$scope.newName ? 'Default name' : $scope.newName;
-      $scope.users.push(obj);
-      // clear text
+      Users.add($scope.newName);
       $scope.newName = null;
     };
 
@@ -20,14 +13,46 @@ angular.module('app', [])
       var user = $scope.users[index];
       var newName = prompt('Enter new name', user.name);
       if (newName) {
-        $scope.users[index].name = newName;
+        Users.edit(index, newName);
       }
     };
 
     $scope.remove = function (index) {
       if (confirm('Are you sure?')) {
-        $scope.users.splice(index, 1);
+        Users.remove(index);
       };
     };
 
+  })
+
+  .factory('Users', function ($rootScope) {
+    return {
+      // The users
+      users: [
+        { id: '1', name: 'Satit Rianpit' },
+        { id: '2', name: 'Steve Jobe' }
+      ],
+      // Get all users
+      all: function () {
+        return this.users;
+      },
+      // Add user
+      add: function (name) {
+        var obj = {};
+        obj.id = Date.now();
+        obj.name = !name ? 'Default name' : name;
+        this.users.push(obj);
+        return;
+      },
+      // Edit user
+      edit: function (index, name) {
+        this.users[index].name = name;
+        return;
+      },
+      // Remove user
+      remove: function (index) {
+        this.users.splice(index, 1);
+        return;
+      }
+    }
   });
