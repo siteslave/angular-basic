@@ -1,13 +1,13 @@
 {
   "name": "angular-basic",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic angular tutorial",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "hs ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Satit Rianpit",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.5",
