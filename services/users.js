@@ -1,7 +1,7 @@
 // User service
 angular.module('app.services.Users', [])
 
-  .factory('Users', function ($rootScope) {
+  .factory('Users', function () {
     return {
       // The users
       users: [
