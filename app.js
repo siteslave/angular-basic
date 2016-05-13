@@ -2,7 +2,6 @@
 angular.module('app', [])
   .controller('MainCtrl', function ($scope, $log) {
 
-    $log.info('Welcome to angular application.');
-    $scope.message = 'Hello world';
+    $scope.name = 'Satit Rianpit';
 
   });
