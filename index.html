@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Basic angular application</title>
+    <title>Basic angular application: STEP 1</title>
 
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -13,7 +13,14 @@
 
     <div class="container">
       <div ng-controller="MainCtrl">
-        <h1>{{ message }}</h1>
+
+        <div class="row">
+          <div class="col-md-3">
+            Your name: {{ name }} <br />
+            <input type="text" class="form-control" ng-model="name">
+          </div>
+        </div>
+
       </div>
     </div>
 
