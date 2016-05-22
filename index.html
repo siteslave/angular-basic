@@ -12,9 +12,26 @@
   <body>
 
     <div class="container">
-      <div ng-controller="MainCtrl">
-        <h1>{{ message }}</h1>
+      <br>
+      <div class="row well well-sm">
+        <div class="col-md-12">
+          <a ui-sref="main" class="btn btn-primary">
+            <i class="glyphicon glyphicon-home"></i>
+            Home
+            </a>
+          <a ui-sref="new" class="btn btn-success">
+            <i class="glyphicon glyphicon-plus"></i>
+            New
+          </a>
+
+          <a ui-sref="about" class="btn btn-success">
+            <i class="glyphicon glyphicon-info"></i>
+            About
+          </a>
+        </div>
       </div>
+      <hr>
+      <ui-view></ui-view>
     </div>
 
     <script src="./node_modules/angular/angular.js"></script>
