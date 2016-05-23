@@ -3,32 +3,39 @@ angular.module('app', ['ui.router'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
-
     $stateProvider
       .state('main', {
         url: '/',
         templateUrl: './templates/main.html',
-        controller: function ($scope) {
-          $scope.message = 'Main page';
+        controller: function ($scope, $state) {
+          $scope.products = ['Apple', 'Mongo', 'Orange'];
+
+          $scope.go = function () {
+            $state.go('detail', { idx: 1 });
+          };
         }
       })
-      .state('about', {
-        url: '/about',
-        templateUrl: './templates/about.html',
-        controller: function ($scope) {
-          $scope.message = 'About Page';
-        }
-      })
-      .state('new', {
-        url: '/new',
-        templateUrl: './templates/new.html',
-        controller: function ($scope) {
-          $scope.message = 'New Page';
-        }
+      .state('detail', {
+        url: '/detail/:idx',
+        templateUrl: './templates/detail.html',
+        controller: 'DetailCtrl'
       });
 
+
+    $urlRouterProvider.otherwise('/');
+
   })
-  .controller('MainCtrl', function ($scope, $log) {
+
+  .controller('DetailCtrl', function ($scope, $stateParams) {
+
+    console.log($stateParams);
+
+    $scope.users = [
+      { id: 1, name: 'Satit' }, // 0
+      { id: 2, name: 'John Doe' } // 1
+    ];
+
+    $scope.selectedUser = $scope.users[$stateParams.idx];
+
 
   });
